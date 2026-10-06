@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full bg-slate-900 text-slate-100">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IntiWatt | Escuela Comercial de Venta Solar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#fffbeed',
+                            100: '#fef3c7',
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                            700: '#b45309',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.6);
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(217, 119, 6, 0.4);
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: rgba(217, 119, 6, 0.8);
+        }
+        .tab-btn.active {
+            background-color: rgba(217, 119, 6, 0.15);
+            color: #fbbf24;
+            border-color: #f59e0b;
+        }
+    </style>
+</head>
+<body class="h-full font-sans bg-slate-950 text-slate-200 flex flex-col overflow-hidden">
+
+    <!-- TOP HEADER / BRAND BAR -->
+    <header class="bg-slate-900 border-b border-slate-800 px-4 py-3 shrink-0 flex items-center justify-between shadow-lg relative z-20">
+        <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-amber-300 flex items-center justify-center text-slate-950 font-black text-xl shadow-md shadow-amber-500/20">
+                <i class="fa-solid fa-sun"></i>
+            </div>
+            <div>
+                <h1 class="text-lg font-bold text-white tracking-tight flex items-center gap-2">
+                    INTIWATT <span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/30">Escuela Comercial</span>
+                </h1>
+                <p class="text-xs text-slate-400 hidden sm:block">Guía Oficial para Comerciales Autorizados Freelance</p>
+            </div>
+        </div>
+
+        <!-- Quick Access Rule Badge -->
+        <div class="hidden lg:flex items-center gap-2 bg-amber-500/10 border border-amber-500/20 px-3 py-1.5 rounded-lg text-xs text-amber-300">
+            <i class="fa-solid fa-lightbulb text-amber-400"></i>
+            <span class="font-medium">Regla de Oro: "No vendas paneles. Detecta el dolor."</span>
+        </div>
+    </header>
+
+    <!-- MAIN APP WRAPPER -->
+    <div class="flex-1 flex flex-col md:flex-row overflow-hidden relative">
+
+        <!-- SIDEBAR NAVIGATION -->
+        <nav class="bg-slate-900/90 border-r border-slate-800 w-full md:w-64 shrink-0 flex flex-row md:flex-col justify-between overflow-x-auto md:overflow-y-auto custom-scrollbar p-2 md:p-4 gap-1 z-10">
+            <div class="flex md:flex-col gap-1.5 w-full">
+                
+                <button onclick="switchTab('filosofia')" id="tab-filosofia" class="tab-btn active flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs md:text-sm font-medium text-slate-300 hover:bg-slate-800 border border-transparent transition-all whitespace-nowrap text-left w-full">
+                    <i class="fa-solid fa-compass text-amber-400 text-base w-5 text-center"></i>
+                    <span>1. La Filosofía</span>
+                </button>
+
+                <button onclick="switchTab('dolores')" id="tab-dolores" class="tab-btn flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs md:text-sm font-medium text-slate-300 hover:bg-slate-800 border border-transparent transition-all whitespace-nowrap text-left w-full">
+                    <i class="fa-solid fa-heart-pulse text-rose-400 text-base w-5 text-center"></i>
+                    <span>2. Los 7 Dolores</span>
+                </button>
+
+                <button onclick="switchTab('semaforo')" id="tab-semaforo" class="tab-btn flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs md:text-sm font-medium text-slate-300 hover:bg-slate-800 border border-transparent transition-all whitespace-nowrap text-left w-full">
+                    <i class="fa-solid fa-traffic-light text-emerald-400 text-base w-5 text-center"></i>
+                    <span>3. Semáforo Lead</span>
+                </button>
+
+                <button onclick="switchTab('preguntas')" id="tab-preguntas" class="tab-btn flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs md:text-sm font-medium text-slate-300 hover:bg-slate-800 border border-transparent transition-all whitespace-nowrap text-left w-full">
+                    <i class="fa-solid fa-comments text-sky-400 text-base w-5 text-center"></i>
+                    <span>4. Guía de Preguntas</span>
+                </button>
+
+                <button onclick="switchTab('roleplay')" id="tab-roleplay" class="tab-btn flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs md:text-sm font-medium text-slate-300 hover:bg-slate-800 border border-transparent transition-all whitespace-nowrap text-left w-full">
+                    <i class="fa-solid fa-gamepad text-purple-400 text-base w-5 text-center"></i>
+                    <span>5. Simulador Roleplay</span>
+                </button>
+
+                <button onclick="switchTab('ficha')" id="tab-ficha" class="tab-btn flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs md:text-sm font-medium text-slate-300 hover:bg-slate-800 border border-transparent transition-all whitespace-nowrap text-left w-full">
+                    <i class="fa-solid fa-paper-plane text-amber-400 text-base w-5 text-center"></i>
+                    <span>6. Pasar Oportunidad</span>
+                </button>
+
+                <button onclick="switchTab('reglas')" id="tab-reglas" class="tab-btn flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs md:text-sm font-medium text-slate-300 hover:bg-slate-800 border border-transparent transition-all whitespace-nowrap text-left w-full">
+                    <i class="fa-solid fa-ban text-rose-500 text-base w-5 text-center"></i>
+                    <span>7. Reglas y Límites</span>
+                </button>
+
+            </div>
+
+            <!-- Bottom quote box -->
+            <div class="hidden md:block p-3 rounded-xl bg-slate-950/60 border border-slate-800/80 mt-4 text-center">
+                <p class="text-[11px] italic text-slate-400">"Un buen comercial no escucha solo lo que dice el cliente. Escucha POR QUÉ lo dice."</p>
+            </div>
+        </nav>
+
+        <!-- SUBPAGE CONTENT CONTAINER -->
+        <main class="flex-1 overflow-y-auto custom-scrollbar p-4 md:p-8 bg-slate-950 relative">
+
+            <!-- SUBPAGE 1: FILOSOFÍA -->
+            <section id="page-filosofia" class="space-y-8 max-w-5xl mx-auto">
+                <div class="border-b border-slate-800 pb-5">
+                    <span class="text-amber-400 font-semibold text-xs uppercase tracking-wider">Módulo 1</span>
+                    <h2 class="text-2xl md:text-3xl font-extrabold text-white mt-1">El Gran Cambio de Mentalidad</h2>
+                    <p class="text-slate-400 text-sm md:text-base mt-2">De vender productos a detectar problemas y dolores financieros.</p>
+                </div>
+
+                <!-- Banner Olvida los Paneles -->
+                <div class="bg-gradient-to-r from-amber-500/10 via-slate-900 to-slate-900 border border-amber-500/30 rounded-2xl p-6 relative overflow-hidden shadow-xl">
+                    <div class="absolute -right-10 -bottom-10 opacity-10 text-amber-500 pointer-events-none">
+                        <i class="fa-solid fa-solar-panel text-9xl"></i>
+                    </div>
+                    <div class="relative z-10 max-w-3xl">
+                        <div class="inline-flex items-center gap-2 bg-amber-500/20 text-amber-300 text-xs font-bold px-3 py-1 rounded-full mb-3 border border-amber-500/30">
+                            <i class="fa-solid fa-triangle-exclamation"></i> PASO 1: OLVIDA LOS PANELES
+                        </div>
+                        <h3 class="text-xl md:text-2xl font-bold text-white mb-2">Tu trabajo NO es vender paneles solares</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                            Tampoco tienes que saber calcular instalaciones, inversores, tarifas ni curvas de consumo. Eso lo hace el equipo técnico de IntiWatt. Tu trabajo es encontrar empresas que tengan un <strong class="text-amber-300">problema económico real</strong>.
+                        </p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                            <div class="bg-slate-950/70 p-3 rounded-xl border border-slate-800">
+                                <div class="text-xs text-rose-400 font-semibold uppercase">❌ Lo que NO debes hacer</div>
+                                <p class="text-xs text-slate-300 mt-1">"Tenemos paneles de 550W con inversores de última tecnología..."</p>
+                            </div>
+                            <div class="bg-slate-950/70 p-3 rounded-xl border border-emerald-500/30">
+                                <div class="text-xs text-emerald-400 font-semibold uppercase">✔️ Lo que SÍ debes hacer</div>
+                                <p class="text-xs text-slate-300 mt-1">"¿El aumento del costo energético les está afectando sus márgenes de ganancia?"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Traducción a IntiWatt -->
+                <div class="space-y-4">
+                    <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-rotate text-amber-400"></i> De Vendedor Tradicional a Consultor IntiWatt
+                    </h3>
+                    <p class="text-xs text-slate-400">La lógica comercial ganadora: Preguntar ➔ Escuchar ➔ Detectar necesidad ➔ Calificar ➔ Avanzar.</p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 hover:border-amber-500/40 transition-all">
+                            <div class="text-xs text-slate-500 font-bold uppercase mb-1">Vendedor Común</div>
+                            <div class="text-sm font-semibold text-slate-300 mb-2">Habla del Producto</div>
+                            <div class="h-px bg-slate-800 my-2"></div>
+                            <div class="text-xs text-amber-400 font-bold uppercase mb-1">Consultor IntiWatt</div>
+                            <div class="text-sm font-semibold text-white">Habla del Negocio del Cliente</div>
+                        </div>
+
+                        <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 hover:border-amber-500/40 transition-all">
+                            <div class="text-xs text-slate-500 font-bold uppercase mb-1">Vendedor Común</div>
+                            <div class="text-sm font-semibold text-slate-300 mb-2">Ofrece Paneles y kWp</div>
+                            <div class="h-px bg-slate-800 my-2"></div>
+                            <div class="text-xs text-amber-400 font-bold uppercase mb-1">Consultor IntiWatt</div>
+                            <div class="text-sm font-semibold text-white">Ofrece Reducir Costos</div>
+                        </div>
+
+                        <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 hover:border-amber-500/40 transition-all">
+                            <div class="text-xs text-slate-500 font-bold uppercase mb-1">Vendedor Común</div>
+                            <div class="text-sm font-semibold text-slate-300 mb-2">Presiona para Cerrar</div>
+                            <div class="h-px bg-slate-800 my-2"></div>
+                            <div class="text-xs text-amber-400 font-bold uppercase mb-1">Consultor IntiWatt</div>
+                            <div class="text-sm font-semibold text-white">Diagnostica si hay 'Dolor'</div>
+                        </div>
+
+                        <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 hover:border-amber-500/40 transition-all">
+                            <div class="text-xs text-slate-500 font-bold uppercase mb-1">Vendedor Común</div>
+                            <div class="text-sm font-semibold text-slate-300 mb-2">Hace de Técnico</div>
+                            <div class="h-px bg-slate-800 my-2"></div>
+                            <div class="text-xs text-amber-400 font-bold uppercase mb-1">Consultor IntiWatt</div>
+                            <div class="text-sm font-semibold text-white">Delega al Equipo IntiWatt</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mapa Mental de los 5 Puntos -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+                    <h3 class="text-lg font-bold text-white mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-brain text-purple-400"></i> Tu Mapa Mental en Cada Conversación
+                    </h3>
+                    <p class="text-xs text-slate-400 mb-4">Intenta descubrir estas 5 cosas. No necesitas que las 5 sean positivas, pero cuantas más aparezcan, mayor es la oportunidad.</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-5 gap-3">
+                        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 text-center flex flex-col justify-center items-center">
+                            <span class="w-8 h-8 rounded-full bg-amber-500/20 text-amber-400 font-bold text-sm flex items-center justify-center mb-2">1</span>
+                            <span class="text-xs font-semibold text-white">¿Paga mucho?</span>
+                            <span class="text-[11px] text-slate-400 mt-1">Monto importante</span>
+                        </div>
+                        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 text-center flex flex-col justify-center items-center">
+                            <span class="w-8 h-8 rounded-full bg-amber-500/20 text-amber-400 font-bold text-sm flex items-center justify-center mb-2">2</span>
+                            <span class="text-xs font-semibold text-white">¿Paga cada vez más?</span>
+                            <span class="text-[11px] text-slate-400 mt-1">Aumentos constantes</span>
+                        </div>
+                        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 text-center flex flex-col justify-center items-center">
+                            <span class="w-8 h-8 rounded-full bg-amber-500/20 text-amber-400 font-bold text-sm flex items-center justify-center mb-2">3</span>
+                            <span class="text-xs font-semibold text-white">¿Consume de día?</span>
+                            <span class="text-[11px] text-slate-400 mt-1">Horario diurno</span>
+                        </div>
+                        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 text-center flex flex-col justify-center items-center">
+                            <span class="w-8 h-8 rounded-full bg-amber-500/20 text-amber-400 font-bold text-sm flex items-center justify-center mb-2">4</span>
+                            <span class="text-xs font-semibold text-white">¿Tiene espacio?</span>
+                            <span class="text-[11px] text-slate-400 mt-1">Techo o terreno disponible</span>
+                        </div>
+                        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 text-center flex flex-col justify-center items-center">
+                            <span class="w-8 h-8 rounded-full bg-amber-500/20 text-amber-400 font-bold text-sm flex items-center justify-center mb-2">5</span>
+                            <span class="text-xs font-semibold text-white">¿Le preocupa?</span>
+                            <span class="text-[11px] text-slate-400 mt-1">Interés estratégico real</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SUBPAGE 2: LOS 7 DOLORES -->
+            <section id="page-dolores" class="space-y-6 max-w-5xl mx-auto hidden">
+                <div class="border-b border-slate-800 pb-5">
+                    <span class="text-rose-400 font-semibold text-xs uppercase tracking-wider">Módulo 2</span>
+                    <h2 class="text-2xl md:text-3xl font-extrabold text-white mt-1">Los 7 Dolores Energéticos</h2>
+                    <p class="text-slate-400 text-sm mt-1">Aprende a detectar qué le molesta exactamente al cliente y cómo reaccionar.</p>
+                </div>
+
+                <!-- Grid de Dolores Accordion / Cards -->
+                <div class="space-y-4">
+
+                    <!-- Dolor 1 -->
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 hover:border-amber-500/30 transition-all">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                            <span class="px-2.5 py-1 rounded-md bg-rose-500/10 text-rose-400 text-xs font-bold border border-rose-500/20">Dolor #1</span>
+                            <h3 class="text-lg font-bold text-white flex-1">"La energía está cara"</h3>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2 text-xs">
+                            <div class="bg-slate-950 p-3.5 rounded-xl border border-slate-800">
+                                <div class="text-amber-400 font-semibold mb-1"><i class="fa-solid fa-comment-dots"></i> Lo que dice el cliente:</div>
+                                <p class="text-slate-300 italic">"La luz está carísima, ya no se puede sostener."</p>
+                                <div class="mt-2 text-rose-400 font-semibold">❌ NO respondas:</div>
+                                <p class="text-slate-400">"Nosotros instalamos paneles solares con gran amortización."</p>
+                            </div>
+                            <div class="bg-slate-950 p-3.5 rounded-xl border border-emerald-500/30">
+                                <div class="text-emerald-400 font-semibold mb-1"><i class="fa-solid fa-circle-check"></i> Tu Pregunta Clave:</div>
+                                <p class="text-slate-200 font-medium">"¿Les está afectando mucho en los costos generales de la empresa?"</p>
+                                <p class="text-slate-400 mt-1">Repregunta: "¿Han intentado hacer algo hasta ahora para reducirlo?"</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dolor 2 -->
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 hover:border-amber-500/30 transition-all">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                            <span class="px-2.5 py-1 rounded-md bg-rose-500/10 text-rose-400 text-xs font-bold border border-rose-500/20">Dolor #2</span>
+                            <h3 class="text-lg font-bold text-white flex-1">"Cada vez pago más" (Incertidumbre)</h3>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2 text-xs">
+                            <div class="bg-slate-950 p-3.5 rounded-xl border border-slate-800">
+                                <div class="text-amber-400 font-semibold mb-1"><i class="fa-solid fa-comment-dots"></i> Lo que dice el cliente:</div>
+                                <p class="text-slate-300 italic">"Todos los meses la factura viene más alta, es impredecible."</p>
+                            </div>
+                            <div class="bg-slate-950 p-3.5 rounded-xl border border-emerald-500/30">
+                                <div class="text-emerald-400 font-semibold mb-1"><i class="fa-solid fa-circle-check"></i> Tu Pregunta Clave:</div>
+                                <p class="text-slate-200 font-medium">"¿Eso les está complicando la planificación y presupuesto del negocio?"</p>
+                                <p class="text-slate-400 mt-1">El problema no es solo el monto, es la falta de control sobre el costo futuro.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dolor 3 -->
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 hover:border-amber-500/30 transition-all">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                            <span class="px-2.5 py-1 rounded-md bg-rose-500/10 text-rose-400 text-xs font-bold border border-rose-500/20">Dolor #3</span>
+                            <h3 class="text-lg font-bold text-white flex-1">"No puedo trasladarlo al precio" (Pérdida de Margen)</h3>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2 text-xs">
+                            <div class="bg-slate-950 p-3.5 rounded-xl border border-slate-800">
+                                <div class="text-amber-400 font-semibold mb-1"><i class="fa-solid fa-comment-dots"></i> Lo que dice el cliente:</div>
+                                <p class="text-slate-300 italic">"No puedo aumentar mis precios porque pierdo clientes."</p>
+                            </div>
+                            <div class="bg-slate-950 p-3.5 rounded-xl border border-emerald-500/30">
+                                <div class="text-emerald-400 font-semibold mb-1"><i class="fa-solid fa-circle-check"></i> Tu Confirmación:</div>
+                                <p class="text-slate-200 font-medium">"Entonces cada aumento de energía sale directamente de su margen neto..."</p>
+                                <p class="text-slate-400 mt-1">Deja un silencio. Permite que el empresario reflexione sobre la pérdida de rentabilidad.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dolor 4 -->
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 hover:border-amber-500/30 transition-all">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                            <span class="px-2.5 py-1 rounded-md bg-rose-500/10 text-rose-400 text-xs font-bold border border-rose-500/20">Dolor #4</span>
+                            <h3 class="text-lg font-bold text-white flex-1">"Tenemos consumo diurno" (Ventana Solar)</h3>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2 text-xs">
+                            <div class="bg-slate-950 p-3.5 rounded-xl border border-slate-800">
+                                <div class="text-amber-400 font-semibold mb-1"><i class="fa-solid fa-comment-dots"></i> Lo que preguntas:</div>
+                                <p class="text-slate-300 italic">"¿En qué horarios concentran la mayor actividad productiva?"</p>
+                            </div>
+                            <div class="bg-slate-950 p-3.5 rounded-xl border border-emerald-500/30">
+                                <div class="text-emerald-400 font-semibold mb-1"><i class="fa-solid fa-circle-check"></i> Qué buscas detectar:</div>
+                                <p class="text-slate-200 font-medium">¿Hay máquinas y consumo encendido mientras hay sol?</p>
+                                <p class="text-slate-400 mt-1">Si operan de lunes a viernes en horario diurno, el encaje con solar es perfecto.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dolor 5 -->
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 hover:border-amber-500/30 transition-all">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                            <span class="px-2.5 py-1 rounded-md bg-rose-500/10 text-rose-400 text-xs font-bold border border-rose-500/20">Dolor #5</span>
+                            <h3 class="text-lg font-bold text-white flex-1">"Tenemos un techo enorme desaprovechado"</h3>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2 text-xs">
+                            <div class="bg-slate-950 p-3.5 rounded-xl border border-slate-800">
+                                <div class="text-amber-400 font-semibold mb-1"><i class="fa-solid fa-comment-dots"></i> Lo que dice el cliente:</div>
+                                <p class="text-slate-300 italic">"Tenemos miles de metros de nave pero no los usamos para nada."</p>
+                            </div>
+                            <div class="bg-slate-950 p-3.5 rounded-xl border border-emerald-500/30">
+                                <div class="text-emerald-400 font-semibold mb-1"><i class="fa-solid fa-circle-check"></i> Tu Pregunta Clave:</div>
+                                <p class="text-slate-200 font-medium">"¿Alguna vez evaluaron transformar ese espacio en un activo para reducir la factura?"</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dolor 6 -->
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 hover:border-amber-500/30 transition-all">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                            <span class="px-2.5 py-1 rounded-md bg-rose-500/10 text-rose-400 text-xs font-bold border border-rose-500/20">Dolor #6</span>
+                            <h3 class="text-lg font-bold text-white flex-1">"Ya nos ofrecieron paneles solares"</h3>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2 text-xs">
+                            <div class="bg-slate-950 p-3.5 rounded-xl border border-slate-800">
+                                <div class="text-amber-400 font-semibold mb-1"><i class="fa-solid fa-comment-dots"></i> Lo que dice el cliente:</div>
+                                <p class="text-slate-300 italic">"Sí, vino otra empresa e hizo una propuesta pero no avanzamos."</p>
+                            </div>
+                            <div class="bg-slate-950 p-3.5 rounded-xl border border-emerald-500/30">
+                                <div class="text-emerald-400 font-semibold mb-1"><i class="fa-solid fa-circle-check"></i> Tu Pregunta Clave:</div>
+                                <p class="text-slate-200 font-medium">"¿Y qué fue exactamente lo que hizo que no tomaran la decisión en ese momento?"</p>
+                                <p class="text-slate-400 mt-1">Descubrirás la verdadera objeción: precio, falta de confianza o propuesta sobredimensionada.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dolor 7 -->
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 hover:border-amber-500/30 transition-all">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                            <span class="px-2.5 py-1 rounded-md bg-rose-500/10 text-rose-400 text-xs font-bold border border-rose-500/20">Dolor #7</span>
+                            <h3 class="text-lg font-bold text-white flex-1">"Quiero invertir, pero tengo miedo"</h3>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2 text-xs">
+                            <div class="bg-slate-950 p-3.5 rounded-xl border border-slate-800">
+                                <div class="text-amber-400 font-semibold mb-1"><i class="fa-solid fa-comment-dots"></i> Lo que dice el cliente:</div>
+                                <p class="text-slate-300 italic">"Suena bien pero no sé si realmente funcione como dicen."</p>
+                            </div>
+                            <div class="bg-slate-950 p-3.5 rounded-xl border border-emerald-500/30">
+                                <div class="text-emerald-400 font-semibold mb-1"><i class="fa-solid fa-circle-check"></i> Tu Pregunta Clave:</div>
+                                <p class="text-slate-200 font-medium">"¿Qué es lo que más te preocupa de hacer una inversión así?"</p>
+                                <p class="text-slate-400 mt-1">Escucha el miedo exacto: ¿Mantenimiento? ¿Ahorro no garantizado? ¿Tiempo de retorno?</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- SUBPAGE 3: SEMÁFORO DE CALIFICACIÓN -->
+            <section id="page-semaforo" class="space-y-6 max-w-4xl mx-auto hidden">
+                <div class="border-b border-slate-800 pb-5">
+                    <span class="text-emerald-400 font-semibold text-xs uppercase tracking-wider">Módulo 3</span>
+                    <h2 class="text-2xl md:text-3xl font-extrabold text-white mt-1">Evaluador & Semáforo IntiWatt</h2>
+                    <p class="text-slate-400 text-sm mt-1">Marca los criterios de tu prospecto para saber si es momento de pasarlo a IntiWatt o no insistir.</p>
+                </div>
+
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+                    <h3 class="text-base font-bold text-white mb-4">Selecciona los elementos detectados en la conversación:</h3>
+
+                    <div class="space-y-3" id="semaforo-checklist">
+                        <label class="flex items-center gap-3 p-3 rounded-xl bg-slate-950 border border-slate-800 hover:border-slate-700 cursor-pointer transition-all">
+                            <input type="checkbox" onchange="calculateScore()" class="sem-check w-4 h-4 rounded text-amber-500 focus:ring-amber-500 bg-slate-900 border-slate-700">
+                            <span class="text-xs md:text-sm text-slate-200">Factura de energía de monto importante para el tamaño del negocio</span>
+                        </label>
+
+                        <label class="flex items-center gap-3 p-3 rounded-xl bg-slate-950 border border-slate-800 hover:border-slate-700 cursor-pointer transition-all">
+                            <input type="checkbox" onchange="calculateScore()" class="sem-check w-4 h-4 rounded text-amber-500 focus:ring-amber-500 bg-slate-900 border-slate-700">
+                            <span class="text-xs md:text-sm text-slate-200">Preocupación activa por aumentos recientes en las tarifas</span>
+                        </label>
+
+                        <label class="flex items-center gap-3 p-3 rounded-xl bg-slate-950 border border-slate-800 hover:border-slate-700 cursor-pointer transition-all">
+                            <input type="checkbox" onchange="calculateScore()" class="sem-check w-4 h-4 rounded text-amber-500 focus:ring-amber-500 bg-slate-900 border-slate-700">
+                            <span class="text-xs md:text-sm text-slate-200">Actividad principal concentrada durante el día (Horas de Sol)</span>
+                        </label>
+
+                        <label class="flex items-center gap-3 p-3 rounded-xl bg-slate-950 border border-slate-800 hover:border-slate-700 cursor-pointer transition-all">
+                            <input type="checkbox" onchange="calculateScore()" class="sem-check w-4 h-4 rounded text-amber-500 focus:ring-amber-500 bg-slate-900 border-slate-700">
+                            <span class="text-xs md:text-sm text-slate-200">Disponibilidad de techo, cubierta amplia o espacio libre propicio</span>
+                        </label>
+
+                        <label class="flex items-center gap-3 p-3 rounded-xl bg-slate-950 border border-slate-800 hover:border-slate-700 cursor-pointer transition-all">
+                            <input type="checkbox" onchange="calculateScore()" class="sem-check w-4 h-4 rounded text-amber-500 focus:ring-amber-500 bg-slate-900 border-slate-700">
+                            <span class="text-xs md:text-sm text-slate-200">Ya evaluó energía solar previamente o tiene disposición si los números cierran</span>
+                        </label>
+
+                        <label class="flex items-center gap-3 p-3 rounded-xl bg-slate-950 border border-slate-800 hover:border-slate-700 cursor-pointer transition-all">
+                            <input type="checkbox" onchange="calculateScore()" id="check-negativo" class="w-4 h-4 rounded text-rose-500 focus:ring-rose-500 bg-slate-900 border-slate-700">
+                            <span class="text-xs md:text-sm text-rose-300 font-medium">⚠️ Expresó claramente que el gasto de luz le da igual o no tiene consumo diurno</span>
+                        </label>
+                    </div>
+
+                    <!-- RESULT DISPLAY -->
+                    <div id="semaforo-result" class="mt-6 p-5 rounded-xl border transition-all duration-300 bg-slate-950 border-slate-800">
+                        <div class="flex items-center gap-3">
+                            <div id="semaforo-icon" class="w-10 h-10 rounded-full flex items-center justify-center text-xl bg-slate-800 text-slate-400">
+                                <i class="fa-solid fa-traffic-light"></i>
+                            </div>
+                            <div>
+                                <h4 id="semaforo-title" class="text-base font-bold text-white">Completa el diagnóstico</h4>
+                                <p id="semaforo-desc" class="text-xs text-slate-400">Marca las casillas superiores para obtener el veredicto comercial.</p>
+                            </div>
+                        </div>
+                        <div id="semaforo-action" class="mt-3 pt-3 border-t border-slate-800 text-xs text-slate-300 hidden">
+                            <!-- Action button or instruction will appear here -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SUBPAGE 4: GUÍA DE PREGUNTAS Y DECODIFICADOR -->
+            <section id="page-preguntas" class="space-y-8 max-w-5xl mx-auto hidden">
+                <div class="border-b border-slate-800 pb-5">
+                    <span class="text-sky-400 font-semibold text-xs uppercase tracking-wider">Módulo 4</span>
+                    <h2 class="text-2xl md:text-3xl font-extrabold text-white mt-1">Guía de Preguntas & Decodificador</h2>
+                    <p class="text-slate-400 text-sm mt-1">Las 15 frases clave y el filtro entre lo que SÍ debes preguntar vs lo que NO.</p>
+                </div>
+
+                <!-- COMPARISON: PREGUNTAS SI VS NO -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- PREGUNTAS SÍ -->
+                    <div class="bg-slate-900 border border-emerald-500/30 rounded-2xl p-5">
+                        <h3 class="text-base font-bold text-emerald-400 mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-circle-check"></i> PREGUNTAS QUE SÍ DEBES HACER
+                        </h3>
+                        <ul class="space-y-2 text-xs text-slate-200">
+                            <li class="p-2 rounded bg-slate-950 border border-slate-800 flex items-start gap-2">
+                                <i class="fa-solid fa-check text-emerald-400 mt-0.5"></i>
+                                <span>"¿A qué se dedica la empresa y qué horarios manejan?"</span>
+                            </li>
+                            <li class="p-2 rounded bg-slate-950 border border-slate-800 flex items-start gap-2">
+                                <i class="fa-solid fa-check text-emerald-400 mt-0.5"></i>
+                                <span>"¿La energía representa un costo importante para ustedes?"</span>
+                            </li>
+                            <li class="p-2 rounded bg-slate-950 border border-slate-800 flex items-start gap-2">
+                                <i class="fa-solid fa-check text-emerald-400 mt-0.5"></i>
+                                <span>"¿Les está afectando los últimos aumentos en el margen?"</span>
+                            </li>
+                            <li class="p-2 rounded bg-slate-950 border border-slate-800 flex items-start gap-2">
+                                <i class="fa-solid fa-check text-emerald-400 mt-0.5"></i>
+                                <span>"¿Tienen techo o superficie libre sin utilizar?"</span>
+                            </li>
+                            <li class="p-2 rounded bg-slate-950 border border-slate-800 flex items-start gap-2">
+                                <i class="fa-solid fa-check text-emerald-400 mt-0.5"></i>
+                                <span>"¿Qué fue lo que les frenó al evaluar solar anteriormente?"</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- PREGUNTAS NO -->
+                    <div class="bg-slate-900 border border-rose-500/30 rounded-2xl p-5">
+                        <h3 class="text-base font-bold text-rose-400 mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-circle-xmark"></i> PREGUNTAS QUE NO NECESITAS HACER
+                        </h3>
+                        <ul class="space-y-2 text-xs text-slate-300">
+                            <li class="p-2 rounded bg-slate-950 border border-slate-800 flex items-start gap-2 text-slate-400 line-through">
+                                <i class="fa-solid fa-xmark text-rose-400 mt-0.5"></i>
+                                <span>"¿Cuál es su irradiancia solar o Performance Ratio?"</span>
+                            </li>
+                            <li class="p-2 rounded bg-slate-950 border border-slate-800 flex items-start gap-2 text-slate-400 line-through">
+                                <i class="fa-solid fa-xmark text-rose-400 mt-0.5"></i>
+                                <span>"¿Cuántos kWp quieren instalar exactamente?"</span>
+                            </li>
+                            <li class="p-2 rounded bg-slate-950 border border-slate-800 flex items-start gap-2 text-slate-400 line-through">
+                                <i class="fa-solid fa-xmark text-rose-400 mt-0.5"></i>
+                                <span>"¿Qué marca de inversor o tipo de panel prefieren?"</span>
+                            </li>
+                            <li class="p-2 rounded bg-slate-950 border border-slate-800 flex items-start gap-2 text-slate-400 line-through">
+                                <i class="fa-solid fa-xmark text-rose-400 mt-0.5"></i>
+                                <span>"¿Cuál es su curva de carga o factor de potencia exacto?"</span>
+                            </li>
+                        </ul>
+                        <p class="text-[11px] text-amber-400 mt-3 italic">* Todo lo técnico lo responde el equipo de IntiWatt. Generas más confianza derivando adecuadamente.</p>
+                    </div>
+                </div>
+
+                <!-- DECODIFICADOR INTERACTIVO DE FRASES -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+                    <h3 class="text-lg font-bold text-white mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-[#00aa00] text-amber-400"></i> Decodificador de las 15 Frases Clave
+                    </h3>
+                    <p class="text-xs text-slate-400 mb-4">Selecciona lo que dice el cliente para revelar qué significa realmente en términos comerciales:</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="space-y-1.5 md:col-span-1 max-h-80 overflow-y-auto custom-scrollbar pr-1">
+                            <button onclick="decodePhrase(0)" class="phrase-btn w-full text-left p-2.5 rounded-lg text-xs bg-slate-950 border border-slate-800 hover:border-amber-500/50 text-slate-300 transition-all font-medium">"La factura se nos fue de las manos"</button>
+                            <button onclick="decodePhrase(1)" class="phrase-btn w-full text-left p-2.5 rounded-lg text-xs bg-slate-950 border border-slate-800 hover:border-amber-500/50 text-slate-300 transition-all font-medium">"No sabemos cuánto vamos a pagar el mes que viene"</button>
+                            <button onclick="decodePhrase(2)" class="phrase-btn w-full text-left p-2.5 rounded-lg text-xs bg-slate-950 border border-slate-800 hover:border-amber-500/50 text-slate-300 transition-all font-medium">"Tenemos muchísimo consumo durante el día"</button>
+                            <button onclick="decodePhrase(3)" class="phrase-btn w-full text-left p-2.5 rounded-lg text-xs bg-slate-950 border border-slate-800 hover:border-amber-500/50 text-slate-300 transition-all font-medium">"Ya nos ofrecieron poner paneles anteriormente"</button>
+                            <button onclick="decodePhrase(4)" class="phrase-btn w-full text-left p-2.5 rounded-lg text-xs bg-slate-950 border border-slate-800 hover:border-amber-500/50 text-slate-300 transition-all font-medium">"¿En cuánto tiempo se recupera la inversión?"</button>
+                            <button onclick="decodePhrase(5)" class="phrase-btn w-full text-left p-2.5 rounded-lg text-xs bg-slate-950 border border-slate-800 hover:border-amber-500/50 text-slate-300 transition-all font-medium">"El techo está completamente desaprovechado"</button>
+                        </div>
+
+                        <div id="phrase-decoder-display" class="md:col-span-2 bg-slate-950 p-6 rounded-xl border border-slate-800 flex flex-col justify-center">
+                            <div class="text-xs text-amber-400 font-bold uppercase tracking-wider mb-2">Lo que debes escuchar:</div>
+                            <h4 id="phrase-title" class="text-lg font-bold text-white mb-2">Selecciona una frase de la izquierda</h4>
+                            <p id="phrase-meaning" class="text-slate-300 text-sm leading-relaxed">Aprende a interpretar el verdadero dolor económico de las empresas detrás de cada afirmación.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LA FRASE DE ORO INTiWATT -->
+                <div class="bg-gradient-to-r from-amber-500/20 to-slate-900 border border-amber-500/40 rounded-2xl p-6 flex flex-col md:flex-row items-center justify-between gap-4">
+                    <div>
+                        <span class="text-xs font-extrabold text-amber-400 uppercase tracking-wider">La Cierre & Frase de Oro</span>
+                        <h4 class="text-base font-bold text-white mt-1">Cómo cerrar la conversación y pasar a IntiWatt:</h4>
+                        <p class="text-xs text-slate-300 italic mt-2">
+                            "Por lo que me cuentas, creo que merece la pena que lo revisemos. Nosotros podemos analizar cuánto de ese consumo podría dejar de comprarse a la red. <strong class="text-amber-300">Si los números cierran, te lo vamos a mostrar. Y si no cierran, también te lo vamos a decir.</strong>"
+                        </p>
+                    </div>
+                    <button onclick="copyPhrase()" class="shrink-0 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs px-4 py-2.5 rounded-xl shadow-lg transition-all flex items-center gap-2">
+                        <i class="fa-solid fa-copy"></i> Copiar Frase
+                    </button>
+                </div>
+            </section>
+
+            <!-- SUBPAGE 5: SIMULADOR ROLEPLAY -->
+            <section id="page-roleplay" class="space-y-6 max-w-4xl mx-auto hidden">
+                <div class="border-b border-slate-800 pb-5">
+                    <span class="text-purple-400 font-semibold text-xs uppercase tracking-wider">Módulo 5</span>
+                    <h2 class="text-2xl md:text-3xl font-extrabold text-white mt-1">Simulador Práctico de Roleplay</h2>
+                    <p class="text-slate-400 text-sm mt-1">Ponte a prueba en situaciones reales. Elige la mejor respuesta comercial.</p>
+                </div>
+
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl" id="roleplay-container">
+                    <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-4">
+                        <span id="roleplay-step" class="text-xs font-bold text-purple-400 bg-purple-500/10 px-3 py-1 rounded-full border border-purple-500/20">Escenario 1 de 3</span>
+                        <span id="roleplay-score" class="text-xs font-semibold text-slate-400">Puntaje: 0 pts</span>
+                    </div>
+
+                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mb-6 flex gap-3">
+                        <div class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center shrink-0 text-amber-400 font-bold">
+                            <i class="fa-solid fa-user-tie"></i>
+                        </div>
+                        <div>
+                            <span class="text-[11px] font-bold text-slate-500 uppercase">Cliente (Dueño de Fábrica):</span>
+                            <p id="roleplay-prompt" class="text-sm font-medium text-white mt-0.5">"La factura de energía se nos fue por las nubes este último semestre y ya nos reunimos con una empresa solar pero nos pasaron un presupuesto altísimo y no avanzamos."</p>
+                        </div>
+                    </div>
+
+                    <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">¿Cómo respondes comercialmente?</h4>
+
+                    <div id="roleplay-options" class="space-y-3">
+                        <!-- Options injected by JS -->
+                    </div>
+
+                    <div id="roleplay-feedback" class="mt-6 p-4 rounded-xl hidden text-xs leading-relaxed">
+                        <!-- Feedback injected by JS -->
+                    </div>
+
+                    <div class="mt-6 flex justify-end">
+                        <button id="roleplay-next" onclick="nextRoleplayScenario()" class="hidden bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs px-5 py-2.5 rounded-xl transition-all">
+                            Siguiente Escenario <i class="fa-solid fa-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SUBPAGE 6: PASAR OPORTUNIDAD A INTIWATT -->
+            <section id="page-ficha" class="space-y-6 max-w-4xl mx-auto hidden">
+                <div class="border-b border-slate-800 pb-5">
+                    <span class="text-amber-400 font-semibold text-xs uppercase tracking-wider">Módulo 6</span>
+                    <h2 class="text-2xl md:text-3xl font-extrabold text-white mt-1">Generador de Ficha para IntiWatt</h2>
+                    <p class="text-slate-400 text-sm mt-1">Sistematiza el traspaso de prospectos detectados al equipo técnico.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <!-- Formulario de entrada -->
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-4">
+                        <h3 class="text-sm font-bold text-white border-b border-slate-800 pb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-pen-to-square text-amber-400"></i> Datos de la Oportunidad
+                        </h3>
+
+                        <div>
+                            <label class="block text-xs font-medium text-slate-300 mb-1">Empresa / Contacto</label>
+                            <input type="text" id="lead-nombre" placeholder="ej. Fábrica Textil San José - Juan Perez" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-medium text-slate-300 mb-1">Actividad Principal y Horario</label>
+                            <input type="text" id="lead-actividad" placeholder="ej. Producción textil, operan Lunes a Viernes de 8 a 18 hs" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-medium text-slate-300 mb-1">Dolor Principal Detectado</label>
+                            <select id="lead-dolor" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500">
+                                <option value="Aumento desmedido de costos y pérdida de margen">Aumento desmedido de costos y pérdida de margen</option>
+                                <option value="Falta de previsibilidad energética">Falta de previsibilidad energética</option>
+                                <option value="Superficie / Techo desaprovechado">Superficie / Techo desaprovechado</option>
+                                <option value="Recibió propuesta anterior que no le convenció">Recibió propuesta anterior que no le convenció</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-medium text-slate-300 mb-1">Detalles de la Cubierta / Espacio</label>
+                            <input type="text" id="lead-techo" placeholder="ej. Techo de chapa amplio en buen estado" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-medium text-slate-300 mb-1">Notas Adicionales / Objeciones del Cliente</label>
+                            <textarea id="lead-notas" rows="3" placeholder="ej. Tienen miedo que la inversión tarde demasiado en recuperarse." class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500 resize-none"></textarea>
+                        </div>
+
+                        <button onclick="generateLeadSummary()" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs py-2.5 rounded-xl transition-all">
+                            Generar Resumen para IntiWatt
+                        </button>
+                    </div>
+
+                    <!-- Output preview -->
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-sm font-bold text-white border-b border-slate-800 pb-2 flex items-center justify-between">
+                                <span><i class="fa-solid fa-file-lines text-amber-400 mr-2"></i> Resumen de Traspaso</span>
+                                <span class="text-[10px] text-slate-500 uppercase">Formato Mensaje</span>
+                            </h3>
+
+                            <div id="lead-output" class="mt-4 bg-slate-950 p-4 rounded-xl border border-slate-800 font-mono text-xs text-slate-300 whitespace-pre-wrap leading-relaxed min-h-[220px]">
+[Ficha de Oportunidad IntiWatt]
+Completa los campos de la izquierda para generar el resumen listo para enviar por WhatsApp o correo al equipo técnico.
+                            </div>
+                        </div>
+
+                        <div class="mt-4 pt-3 border-t border-slate-800 flex justify-end">
+                            <button onclick="copyLeadSummary()" class="bg-slate-800 hover:bg-slate-700 text-white font-semibold text-xs px-4 py-2 rounded-xl transition-all flex items-center gap-2">
+                                <i class="fa-solid fa-copy"></i> Copiar Mensaje
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SUBPAGE 7: REGLAS Y PROHIBICIONES -->
+            <section id="page-reglas" class="space-y-6 max-w-4xl mx-auto hidden">
+                <div class="border-b border-slate-800 pb-5">
+                    <span class="text-rose-500 font-semibold text-xs uppercase tracking-wider">Módulo 7</span>
+                    <h2 class="text-2xl md:text-3xl font-extrabold text-white mt-1">Lo que NO Permitimos</h2>
+                    <p class="text-slate-400 text-sm mt-1">Límites y directrices estrictas para comerciales freelance autorizados por IntiWatt.</p>
+                </div>
+
+                <div class="bg-rose-500/5 border border-rose-500/20 rounded-2xl p-6">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-12 h-12 rounded-xl bg-rose-500/20 flex items-center justify-center text-rose-500 text-2xl shadow-lg">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-white">Protegemos la marca y al cliente</h3>
+                            <p class="text-xs text-slate-400">El incumplimiento de estas normas supone la cancelación inmediata del acuerdo comercial.</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-slate-950 p-4 rounded-xl border border-rose-500/30 relative overflow-hidden group">
+                            <div class="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
+                                <i class="fa-solid fa-file-invoice-dollar text-4xl text-rose-500"></i>
+                            </div>
+                            <h4 class="text-sm font-bold text-white mb-2 flex items-center gap-2">
+                                <i class="fa-solid fa-ban text-rose-500"></i> Dar precios o cotizaciones
+                            </h4>
+                            <p class="text-xs text-slate-300 leading-relaxed">
+                                <strong>NUNCA</strong> des estimaciones de precio, presupuestos cerrados ni prometas un costo por instalación sin que el equipo técnico de IntiWatt haya realizado y validado el estudio previo. 
+                            </p>
+                        </div>
+
+                        <div class="bg-slate-950 p-4 rounded-xl border border-rose-500/30 relative overflow-hidden group">
+                            <div class="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
+                                <i class="fa-solid fa-chart-line text-4xl text-rose-500"></i>
+                            </div>
+                            <h4 class="text-sm font-bold text-white mb-2 flex items-center gap-2">
+                                <i class="fa-solid fa-ban text-rose-500"></i> Garantizar retornos exactos
+                            </h4>
+                            <p class="text-xs text-slate-300 leading-relaxed">
+                                No prometas tiempos de retorno de inversión (ROI) exactos ni asegures "ahorrarás un 80%". Los números exactos los dicta el estudio técnico. Tu respuesta debe ser: <em>"Si los números cierran, el estudio te lo demostrará".</em>
+                            </p>
+                        </div>
+
+                        <div class="bg-slate-950 p-4 rounded-xl border border-rose-500/30 relative overflow-hidden group">
+                            <div class="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
+                                <i class="fa-solid fa-hard-hat text-4xl text-rose-500"></i>
+                            </div>
+                            <h4 class="text-sm font-bold text-white mb-2 flex items-center gap-2">
+                                <i class="fa-solid fa-ban text-rose-500"></i> Asesorar técnicamente
+                            </h4>
+                            <p class="text-xs text-slate-300 leading-relaxed">
+                                No te hagas pasar por ingeniero ni especifiques marcas de inversores, estructuras o potencias (kWp). Si el cliente presiona, deriva: <em>"Esa parte la define nuestro equipo de ingeniería para no darte datos erróneos".</em>
+                            </p>
+                        </div>
+
+                        <div class="bg-slate-950 p-4 rounded-xl border border-rose-500/30 relative overflow-hidden group">
+                            <div class="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
+                                <i class="fa-solid fa-hand-holding-dollar text-4xl text-rose-500"></i>
+                            </div>
+                            <h4 class="text-sm font-bold text-white mb-2 flex items-center gap-2">
+                                <i class="fa-solid fa-ban text-rose-500"></i> Cobrar anticipos
+                            </h4>
+                            <p class="text-xs text-slate-300 leading-relaxed">
+                                Tienes estrictamente prohibido solicitar, recibir o gestionar dinero, cheques, transferencias o anticipos en nombre de IntiWatt. Todo circuito de pago se realiza por los canales administrativos oficiales de la empresa.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Navigation Switcher
+        function switchTab(tabId) {
+            document.querySelectorAll('main > section').forEach(sec => sec.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+
+            const targetPage = document.getElementById('page-' + tabId);
+            const targetBtn = document.getElementById('tab-' + tabId);
+
+            if (targetPage) targetPage.classList.remove('hidden');
+            if (targetBtn) targetBtn.classList.add('active');
+        }
+
+        // Semáforo Calculator
+        function calculateScore() {
+            const checks = document.querySelectorAll('.sem-check:checked').length;
+            const isNegative = document.getElementById('check-negativo').checked;
+
+            const resDiv = document.getElementById('semaforo-result');
+            const iconDiv = document.getElementById('semaforo-icon');
+            const titleDiv = document.getElementById('semaforo-title');
+            const descDiv = document.getElementById('semaforo-desc');
+            const actionDiv = document.getElementById('semaforo-action');
+
+            actionDiv.classList.remove('hidden');
+
+            if (isNegative) {
+                resDiv.className = "mt-6 p-5 rounded-xl border border-rose-500/30 bg-rose-500/10";
+                iconDiv.className = "w-10 h-10 rounded-full flex items-center justify-center text-xl bg-rose-500/20 text-rose-400";
+                titleDiv.innerText = "🔴 SEMÁFORO ROJO - No Insistir";
+                descDiv.innerText = "No existe un dolor relevante o la empresa no opera en horarios diurnos.";
+                actionDiv.innerHTML = "<strong>Acción recomendada:</strong> Retirarse con elegancia. Un buen comercial sabe cuándo no perder tiempo.";
+                return;
+            }
+
+            if (checks >= 3) {
+                resDiv.className = "mt-6 p-5 rounded-xl border border-emerald-500/30 bg-emerald-500/10";
+                iconDiv.className = "w-10 h-10 rounded-full flex items-center justify-center text-xl bg-emerald-500/20 text-emerald-400";
+                titleDiv.innerText = "🟢 SEMÁFORO VERDE - Oportunidad Clarísima";
+                descDiv.innerText = `Cumple ${checks} de los 5 criterios principales del mapa mental IntiWatt.`;
+                actionDiv.innerHTML = "<strong>Acción recomendada:</strong> Aplicar la Frase de Oro y coordinar reunión diagnóstica con el equipo de IntiWatt.";
+            } else if (checks >= 1) {
+                resDiv.className = "mt-6 p-5 rounded-xl border border-amber-500/30 bg-amber-500/10";
+                iconDiv.className = "w-10 h-10 rounded-full flex items-center justify-center text-xl bg-amber-500/20 text-amber-400";
+                titleDiv.innerText = "🟡 SEMÁFORO AMARILLO - Indagar Más";
+                descDiv.innerText = "Existe cierto interés o dolor parcial, pero falta información sobre horarios o superficies.";
+                actionDiv.innerHTML = "<strong>Acción recomendada:</strong> Hacer 2 preguntas más sobre márgenes y consumo diurno para terminar de calificar.";
+            } else {
+                resDiv.className = "mt-6 p-5 rounded-xl border border-slate-800 bg-slate-950";
+                iconDiv.className = "w-10 h-10 rounded-full flex items-center justify-center text-xl bg-slate-800 text-slate-400";
+                titleDiv.innerText = "Completa el diagnóstico";
+                descDiv.innerText = "Marca las casillas superiores para obtener el veredicto comercial.";
+                actionDiv.classList.add('hidden');
+            }
+        }
+
+        // Phrase Decoder Data
+        const phrasesData = [
+            {
+                title: "Dolor Económico Directo",
+                meaning: "La tarifa de la luz se ha convertido en una fuga constante de dinero que afecta sus números. Debes profundizar preguntando cómo impacta eso en la rentabilidad."
+            },
+            {
+                title: "Falta de Previsibilidad y Control",
+                meaning: "El problema no es solo la cifra actual, sino no poder proyectar presupuestos futuros. La energía solar aporta un costo fijo y predecible a 25 años."
+            },
+            {
+                title: "Potencial Máximo de Autoconsumo",
+                meaning: "La energía solar generada se consumirá al instante en tiempo real sin necesidad de baterías caras. Es el perfil ideal para IntiWatt."
+            },
+            {
+                title: "Interés Previo con Objeción Oculta",
+                meaning: "Existe la intención de compra, pero la otra propuesta falló en algo: fue muy cara, sobredimensionada o no transmitió confianza. Averigua qué falló."
+            },
+            {
+                title: "Pensamiento de Inversor Financiero",
+                meaning: "No está comprando un 'adorno ecológico', está evaluando un activo financiero. Debe verse el ROI y el periodo de retorno claro."
+            },
+            {
+                title: "Activo Disponible Ocioso",
+                meaning: "Poseen metros cuadrados valiosos sin ningún uso productivo. Tu objetivo es hacerle ver que ese techo puede generar ahorro de inmediato."
+            }
+        ];
+
+        function decodePhrase(index) {
+            const data = phrasesData[index];
+            if (!data) return;
+            document.getElementById('phrase-title').innerText = data.title;
+            document.getElementById('phrase-meaning').innerText = data.meaning;
+        }
+
+        function copyPhrase() {
+            const text = "Por lo que me cuentas, creo que merece la pena que lo revisemos. Nosotros podemos analizar cuánto de ese consumo podría dejar de comprarse a la red. Si los números cierran, te lo vamos a mostrar. Y si no cierran, también te lo vamos a decir.";
+            executeCopy(text);
+        }
+
+        // Roleplay Simulator Data
+        const roleplayScenarios = [
+            {
+                prompt: `"La factura de energía se nos fue por las nubes este último semestre y ya nos reunimos con una empresa solar pero nos pasaron un presupuesto altísimo y no avanzamos."`,
+                options: [
+                    {
+                        text: "Nosotros tenemos mejores precios e inversores de última generación. ¿Te paso un folleto?",
+                        correct: false,
+                        feedback: "❌ INCORRECTO: Caíste en la trampa de defender tecnología o competir en precio inmediatamente sin entender qué pasó."
+                    },
+                    {
+                        text: "¿Y qué fue lo que finalmente hizo que no cerraran? ¿Qué fue lo que no les convenció de esa propuesta?",
+                        correct: true,
+                        feedback: "✔️️ ¡EXCELENTE! Descubres la razón exacta por la que no compraron (objeción) sin discutir ni prometer nada a ciegas."
+                    },
+                    {
+                        text: "¿Cuántos kWp te presupuestaron y qué inclinación tiene tu cubierta?",
+                        correct: false,
+                        feedback: "❌ INCORRECTO: Te fuiste a detalles técnicos que no te corresponden y que aburren al cliente."
+                    }
+                ]
+            },
+            {
+                prompt: `"No estoy seguro si poner paneles solares en la nave sea rentable, siento que se rompen fácil o requieren mucho mantenimiento."`,
+                options: [
+                    {
+                        text: "Tranquilo, los paneles tienen garantía de 25 años y cristal templado ultra resistente.",
+                        correct: false,
+                        feedback: "⚠️ REGULAR: Intentaste convencerlo demasiado rápido con datos técnicos."
+                    },
+                    {
+                        text: "¿Qué es lo que más te preocupa de hacer una inversión así?",
+                        correct: true,
+                        feedback: "✔️ ¡EXCELENTE! Dejas que el empresario exprese su miedo exacto para que el equipo técnico pueda abordarlo con certeza."
+                    }
+                ]
+            },
+            {
+                prompt: `"Trabajamos en turno diurno de 7 a 17hs de lunes a viernes, pero la verdad no sé si nuestro consumo justifique la inversión."`,
+                options: [
+                    {
+                        text: "¿La energía representa un costo que hoy les preocupe en la planificación del negocio?",
+                        correct: true,
+                        feedback: "✔️ ¡EXCELENTE! Detectaste que el horario es perfecto (coincide con el sol) y ahora indagas el impacto económico."
+                    },
+                    {
+                        text: "Te aseguro que sí justifica, te mando una propuesta hoy mismo.",
+                        correct: false,
+                        feedback: "❌ INCORRECTO: Prometes sin haber analizado la factura ni calificado la oportunidad."
+                    }
+                ]
+            }
+        ];
+
+        let currentRoleplayIndex = 0;
+        let roleplayScore = 0;
+
+        function loadRoleplayScenario() {
+            const sc = roleplayScenarios[currentRoleplayIndex];
+            document.getElementById('roleplay-step').innerText = `Escenario ${currentRoleplayIndex + 1} de ${roleplayScenarios.length}`;
+            document.getElementById('roleplay-prompt').innerText = sc.prompt;
+
+            const optsDiv = document.getElementById('roleplay-options');
+            optsDiv.innerHTML = '';
+
+            sc.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = "w-full text-left p-3.5 rounded-xl bg-slate-950 border border-slate-800 hover:border-purple-500/50 text-xs text-slate-200 transition-all font-medium leading-relaxed flex items-start gap-2";
+                btn.innerHTML = `<span class="bg-slate-800 text-purple-400 w-5 h-5 rounded-full text-[10px] flex items-center justify-center shrink-0 font-bold">${String.fromCharCode(65 + idx)}</span><span>${opt.text}</span>`;
+                btn.onclick = () => selectRoleplayOption(idx);
+                optsDiv.appendChild(btn);
+            });
+
+            document.getElementById('roleplay-feedback').classList.add('hidden');
+            document.getElementById('roleplay-next').classList.add('hidden');
+        }
+
+        function selectRoleplayOption(optIndex) {
+            const sc = roleplayScenarios[currentRoleplayIndex];
+            const selected = sc.options[optIndex];
+
+            const fb = document.getElementById('roleplay-feedback');
+            fb.classList.remove('hidden');
+
+            if (selected.correct) {
+                fb.className = "mt-6 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs leading-relaxed";
+                fb.innerText = selected.feedback;
+                roleplayScore += 10;
+            } else {
+                fb.className = "mt-6 p-4 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs leading-relaxed";
+                fb.innerText = selected.feedback;
+            }
+
+            document.getElementById('roleplay-score').innerText = `Puntaje: ${roleplayScore} pts`;
+            document.getElementById('roleplay-next').classList.remove('hidden');
+
+            // Disable options
+            document.querySelectorAll('#roleplay-options button').forEach(b => b.disabled = true);
+        }
+
+        function nextRoleplayScenario() {
+            currentRoleplayIndex++;
+            if (currentRoleplayIndex < roleplayScenarios.length) {
+                loadRoleplayScenario();
+            } else {
+                document.getElementById('roleplay-container').innerHTML = `
+                    <div class="text-center py-8">
+                        <div class="w-16 h-16 rounded-full bg-purple-500/20 text-purple-400 text-3xl flex items-center justify-center mx-auto mb-4 border border-purple-500/30">
+                            <i class="fa-solid fa-trophy"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">¡Simulación Completada!</h3>
+                        <p class="text-sm text-slate-300 mb-4">Puntaje final obtenido: <span class="text-amber-400 font-bold">${roleplayScore} / ${roleplayScenarios.length * 10} pts</span></p>
+                        <p class="text-xs text-slate-400 max-w-md mx-auto mb-6">Recuerda: Tu meta nunca es vender hardware, sino hacer diagnósticos acertados y calificar dolores reales.</p>
+                        <button onclick="restartRoleplay()" class="bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs px-5 py-2.5 rounded-xl transition-all">Reiniciar Simulador</button>
+                    </div>
+                `;
+            }
+        }
+
+        function restartRoleplay() {
+            location.reload();
+        }
+
+        // Summary Generator for IntiWatt
+        function generateLeadSummary() {
+            const nombre = document.getElementById('lead-nombre').value || "Cliente no especificado";
+            const actividad = document.getElementById('lead-actividad').value || "No especificada";
+            const dolor = document.getElementById('lead-dolor').value;
+            const techo = document.getElementById('lead-techo').value || "A verificar";
+            const notas = document.getElementById('lead-notas').value || "Sin notas adicionales";
+
+            const summary = `📌 OPORUNIDAD INTIWATT
+-----------------------------
+• Empresa/Contacto: ${nombre}
+• Actividad y Horarios: ${actividad}
+• Dolor Principal: ${dolor}
+• Superficie/Techo: ${techo}
+• Notas/Objeciones: ${notas}
+
+💬 Estado Comercial: El cliente aceptó que existe un problema a evaluar. Listo para análisis técnico de viabilidad.`;
+
+            document.getElementById('lead-output').innerText = summary;
+        }
+
+        function copyLeadSummary() {
+            const text = document.getElementById('lead-output').innerText;
+            executeCopy(text);
+        }
+
+        function executeCopy(text) {
+            const dummy = document.createElement("textarea");
+            document.body.appendChild(dummy);
+            dummy.value = text;
+            dummy.select();
+            document.execCommand("copy");
+            document.body.removeChild(dummy);
+
+            // Toast notification
+            const toast = document.createElement("div");
+            toast.className = "fixed bottom-5 right-5 bg-amber-500 text-slate-950 font-bold text-xs px-4 py-2.5 rounded-xl shadow-2xl z-50 flex items-center gap-2";
+            toast.innerHTML = `<i class="fa-solid fa-circle-check"></i> Copiado al portapapeles`;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 2500);
+        }
+
+        // Initial setup on window load
+        window.onload = function() {
+            loadRoleplayScenario();
+        };
+    </script>
+</body>
+</html>
